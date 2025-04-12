@@ -5,6 +5,17 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 
+client.on(Events.MessageCreate, async (message) => {
+    if (message.author.bot || message.channel.id !== client.config.geminiChannelId) return;
+
+    // Example: Bot replies to messages in the specified channel
+    await message.channel.send(`Hello, ${message.author.username}!`);
+});
+
+client.on(Events.MessageCreate, (message) => {
+    console.log(`Received message: ${message.content} in channel: ${message.channel.id}`);
+});
+
 // --- Load Environment Variables ---
 dotenvConfig();
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
