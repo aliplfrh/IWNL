@@ -19,13 +19,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/builders": "^1.x.x",
-    "@discordjs/rest": "^1.x.x",
-    "@discordjs/voice": "^0.16.x",
-    "discord.js": "^14.x.x",
-    "dotenv": "^16.x.x",
-    "libsodium-wrappers": "^0.7.x",
-    "validators": "^0.3.x",
-    "yt-dlp-wrap": "^2.x.x"
-  }
+  "@discordjs/builders": "^1.x.x",
+  "@discordjs/rest": "^1.x.x",
+  "@discordjs/voice": "^0.16.x",
+  "@google/generative-ai": "^0.x.x",
+  "discord.js": "^14.x.x",
+  "dotenv": "^16.x.x",
+  "libsodium-wrappers": "^0.7.x",
+  "validators": "^0.3.x",
+  "yt-dlp-wrap": "^2.x.x"
+}
 }
