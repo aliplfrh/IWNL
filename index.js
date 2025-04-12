@@ -46,12 +46,12 @@ loadConfig(); // Initial load
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent, // Needed for reading messages in Gemini channel
+        GatewayIntentBits.MessageContent, // Ensure this is enabled in the Developer Portal
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildVoiceStates
     ],
-    partials: [Partials.Channel, Partials.Message], // Required for events on uncached messages/channels
+    partials: [Partials.Channel, Partials.Message],
 });
 
 client.config = botConfig; // Attach config to client for easy access in commands
@@ -95,7 +95,7 @@ for (const folder of commandFolders) {
         for (const file of commandFiles) {
             const filePath = path.join(folderPath, file);
             try {
-                const commandModule = await import(filePath);
+                const commandModule = await import(`file://${filePath}`);
                 const command = commandModule.default;
                 if (command && 'data' in command && 'execute' in command) {
                     client.commands.set(command.data.name, command);

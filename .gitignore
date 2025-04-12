@@ -1,5 +1,11 @@
-DISCORD_TOKEN=MTI5NzIzODU1NTgwNTg3NjI0NQ.GZa2oI.pJ8_Dp8ThlDRfS4lCZHZexZ_eGCbA5rIq5jT8c
-CLIENT_ID=1297238555805876245
-GEMINI_API_KEY=AIzaSyAJxAagI4X_-XS_5EIjqta3Jg_82sJ-wRQ
-# Optional: Specify guild ID for instant command updates during development
-# GUILD_ID=YOUR_TEST_SERVER_ID_HERE
+# Ignore environment files
+.env
+
+# Node.js dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Other files to ignore
+.DS_Store
