@@ -155,18 +155,24 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.on(Events.MessageCreate, async message => {
     if (message.author.bot || !message.guild) return;
+    console.log(`Received message: "${message.content}" in channel: ${message.channel.name}`);
+
     loadConfig();
     if (!client.config.geminiChannelId || message.channel.id !== client.config.geminiChannelId) {
+        console.log('Message is not in the configured Gemini channel.');
         return;
     }
-    if (!message.content || message.content.startsWith('/')) return;
+    if (!message.content || message.content.startsWith('/')) {
+        console.log('Message is empty or starts with a command prefix.');
+        return;
+    }
 
     if (!genAI || !geminiModel) {
-        console.log('Received message in Gemini channel, but Gemini AI is not configured/initialized.');
+        console.log('Gemini AI is not configured or initialized.');
         return;
     }
 
-    console.log(`Received message for Gemini in #${message.channel.name}: "${message.content}"`);
+    console.log(`Processing message for Gemini AI: "${message.content}"`);
     await message.channel.sendTyping();
 
     try {
@@ -188,6 +194,8 @@ client.on(Events.MessageCreate, async message => {
         const result = await chat.sendMessage(message.content);
         const response = await result.response;
         const responseText = response.text();
+
+        console.log(`Gemini AI response: "${responseText}"`);
 
         history.push({ role: 'model', parts: [{ text: responseText }] });
 
